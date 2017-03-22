@@ -7,9 +7,12 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CleanPlugin = require('clean-webpack-plugin')//webpack插件，用于清除目录文件
-var glob = require('glob');
-var env = config.build.env
 
+//================多文件入口配置 ==================
+var glob = require('glob');
+//================多文件入口配置 ==================
+
+var env = config.build.env
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
@@ -86,6 +89,7 @@ if (config.build.productionGzip) {
 
 module.exports = webpackConfig
 
+//================多文件入口配置 ==================
 function getEntry(globPath) {
   var entries = {},
     basename, tmp, pathname;
@@ -126,3 +130,4 @@ for (var pathname in pages) {
 
   module.exports.plugins.push(new HtmlWebpackPlugin(conf));
 }
+//================多文件入口配置 ==================

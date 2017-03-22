@@ -5,7 +5,9 @@ var merge = require('webpack-merge')
 var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+
 var glob = require('glob')
+
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
@@ -26,6 +28,9 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin()
   ]
 })
+
+
+//====================多文件配置=====================
 
 function getEntry(globPath) {
   var entries = {},

@@ -1,9 +1,12 @@
 var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
+
+/*======多入口文件配置项======*/
 var projectRoot = path.resolve(__dirname, '../')
 var glob = require('glob');
-var entries = getEntry(['./src/module/*.js', './src/module/**/*.js']); // 获得入口js文件
+var entries = getEntry(['./src/module/*.js', './src/module/**/*.js']); // 获得入口js文件（getEntry函数在下面定义）
+/*============================*/
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
@@ -13,7 +16,7 @@ var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
-  entry: entries,
+  entry: entries,   // 多入口数组
   output: {
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
